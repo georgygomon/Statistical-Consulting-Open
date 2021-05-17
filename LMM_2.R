@@ -12,10 +12,9 @@ attach(data)
 for (i in 1:nrow(data)){
   if (data$geslacht[i] ==1) {data$geslacht[i] <--0.5} else {data$geslacht[i] <-0.5}
 }
-mean_age <- mean(data$Age)
-for (i in 1:nrow(data)){
-  data$Age[i] <- data$Age[i]-mean_age
-}  
+
+data$Age <- scale(data$Age, center = T, scale =F)
+
 
 #-------------------------------------------------------------------------------
 #Uncomment to test whether outliers have effect on results
