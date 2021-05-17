@@ -14,7 +14,7 @@ The following .R files are present:
 2. GLMM_1.R: Fits a Binomial Generalized Linear Mixed Model with as binary outcome depression on the MINI
 3. RCI_1.R: Patients classified as Recovered, Improved, Unchaged or Deteriorated of MDD on basis of the Reliable Change Index and Clinical Significance. Based on the QIDS-SR 16
 4. LMM_2.R: Fits a Linear Mixed Model with as outcome PTSD severity as measured by the CAPS
-5. RCI_1.R: Patients classified as Recovered, Improved, Unchaged or Deteriorated of PTSD on basis of the Reliable Change Index and Clinical Significance. Based on the CAPS
+5. RCI_1.R: Patients classified as Recovered, Improved, Unchanged or Deteriorated of PTSD on basis of the Reliable Change Index and Clinical Significance. Based on the CAPS
 6. Creating_data.R: This file is called by all other files. Here all necessary libraries are loaded (and if necessary, installed) and the data is loaded.
 
 If there are any questions please feel free to email g.gomon@umail.leidenuniv.nl or e.a.hoogendoorn@umail.leidenuniv.nl.
