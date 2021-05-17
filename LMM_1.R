@@ -45,9 +45,9 @@ long_data_1$Time[long_data_1$Time == "QIDS_FU_TOTAAL"] <- "6-months FU"
 long_data_1$Time <- factor(long_data_1$Time, levels = c("Intake", "Post-treatment", "6-months FU"))
 
 
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 #Final easy Model (only time as covariate)
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 LMM_1.1a<-lme(QIDS_score~Time, random=~Time|CIN, 
              data=long_data_1, na.action=na.exclude, method = "REML") 
 #Only random intercept
@@ -102,9 +102,9 @@ summary(LMM_1.4)$tTable
 #3-way interactions needed?
 anova(LMM_1.4, Terms = "Time:geslacht:Age") #no
 
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 #Final elaborate Model
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 LMM_1.5 <- lme(QIDS_score~Time*geslacht+Time*Age, random=~Time|CIN, data=long_data_1, 
                na.action=na.exclude, method = "REML") 
 
@@ -142,22 +142,3 @@ plot(LMM_1.5$fitted[,2], residuals(LMM_1.5,level=1, type='normalized')[!is.na(re
 plot(resid(LMM_1.5, type = "n") ~ long_data_1$Time, 
      type = c("p", "smooth"), lwd = 3)
 
-
--------------------------------------------------------------------------------
-#Plot the results: averaging over geslacht and using mean age
--------------------------------------------------------------------------------
-newdat <- expand.grid(Time = unique(long_data_1$Time), geslacht=c(1,2), Age= mean(data$Age))
-newdat$geslacht <- factor(newdat$geslacht, levels = c("1", "2"))
-fittedmeans <- data.frame(newdat, QIDS_score = predict(LMM_1.5, level = 0, newdata=newdat))
-predicted_avg <- c((fittedmeans$QIDS_score[1:3]+fittedmeans$QIDS_score[4:6])/2)
-predicted_avg <- data.frame(Time =unique(long_data_1$Time), QIDS_score =predicted_avg)
-#Subject specific predictions
-long_data_1$predsmod1 <-predict(LMM_1.5, re.form = NA)
-
-ggplot() +geom_line(data =predicted_avg, aes(x=Time, y =QIDS_score, size = "Population", 
-                                             colour = "Population",group =0)) + 
-  geom_point(data = long_data_1[1:30,], aes(x=Time, y = QIDS_score), col ="#00BFC4" )+ 
-  geom_line(data=long_data_1[1:30,], aes(x=Time,y= predsmod1, group = CIN, size = "Subjects", 
-                                         colour = "Subjects")) +
-  scale_size_manual(name="Predictions", values=c("Subjects"=0.5, "Population"=3)) + 
-  scale_color_manual(name="Predictions", values=c("Subjects"="#00BFC4", "Population"="#F8766D")) 
