@@ -54,6 +54,8 @@ LMM_1.1a<-lme(QIDS_score~Time, random=~Time|CIN,
 LMM_1.2a <- lme(QIDS_score~Time, random=~1|CIN, 
                data=long_data_1, na.action=na.exclude, method = "REML") 
 anova(LMM_1.1a, LMM_1.2a) #random intercepts and slopes is better
+
+#Summary of the model and post-hoc results for individual timepoints:
 summary(LMM_1.1a)$tTable
 
 #-------------------------------------------------------------------------------
