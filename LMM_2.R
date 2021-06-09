@@ -97,6 +97,7 @@ anova(LMM_2.4, L = Lmat_time)
 Lmat_postFU <- rbind(c(0,1,-1,rep(0,9)))
 anova(LMM_2.4, L = Lmat_postFU)
 
+#Summary individual coefficients and post-hoc results:
 summary(LMM_2.4)$tTable 
 
 #-------------------------------------------------------------------------------
