@@ -86,6 +86,9 @@ summary(glmm.1)$coefficients
 Lglmm_postFU <- rbind(c(0,1, -1, rep(0,6)))
 wald.test(Sigma= vcov(glmm.1), b = coefs, L = Lglmm_postFU)
 
+#Summary of coefficients in the model and significance tests individual terms/coefficients:
+summary(glmm.1)$coefficients
+
 
 #-------------------------------------------------------------------------------
 #Marginal coefficients, OR's and probabilities
