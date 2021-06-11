@@ -7,6 +7,12 @@ source("Creating_data.R")
 data<-create_data()
 attach(data)
 
+# For an intention-to-treat analysis: uncomment the following code:
+# rm(list = ls())  
+# source("Creating_data.R")
+# data <- create_data(sample = 'itt')
+
+
 #Centering age and Sex
 for (i in 1:nrow(data)){
   if (data$geslacht[i] ==1) {data$geslacht[i] <--0.5} else {data$geslacht[i] <-0.5}
