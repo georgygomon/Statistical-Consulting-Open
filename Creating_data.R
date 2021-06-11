@@ -11,7 +11,9 @@ if(!require("lme4")){install.packages("lme4"); library("lme4")}
 if(!require("tidyverse")){install.packages("tidyverse"); library("tidyverse")}
 
 #Function that reads in the data and creates new variables for binary depression at intake and follow-up
-create_data<-function(sample = 'completers'){ #change sample = 'completers' to sample = 'itt' for intention to treat sample
+#Note:by default the function takes a completers analysis sample; but you can change sample = 'completers' 
+#to sample = 'itt' for intention to treat sample if you call Creating_data()
+create_data<-function(sample = 'completers'){ 
   PTSD_MDD_data <- as.data.frame(read.spss(file = "My_version.sav", use.value.labels = F)) 
   if(sample = 'completers'){
   data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1 & PTSD_MDD_data$BEHVB == 0,]}
