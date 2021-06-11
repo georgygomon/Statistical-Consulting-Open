@@ -11,9 +11,13 @@ if(!require("lme4")){install.packages("lme4"); library("lme4")}
 if(!require("tidyverse")){install.packages("tidyverse"); library("tidyverse")}
 
 #Function that reads in the data and creates new variables for binary depression at intake and follow-up
-create_data<-function(){
+create_data<-function(sample = 'completers'){ #change sample = 'completers' to sample = 'itt' for intention to treat sample
   PTSD_MDD_data <- as.data.frame(read.spss(file = "My_version.sav", use.value.labels = F)) 
-  data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1 & PTSD_MDD_data$BEHVB == 0,]
+  if(sample = 'completers'){
+  data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1 & PTSD_MDD_data$BEHVB == 0,]}
+  else if(sample = 'itt'){
+  data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1,]}
+
   
   #Create Binary Depression variable for intake from the MINI
   for (i in 1:nrow(data)){
