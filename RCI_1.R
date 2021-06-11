@@ -28,6 +28,11 @@ source("Creating_data.R")
 data<-create_data()
 attach(data)
 
+# For an intention-to-treat analysis: uncomment the following code:
+# rm(list = ls())  
+# source("Creating_data.R")
+# data <- create_data(sample = 'itt')
+
 
 #-------------------------------------------------------------------------------
 #QIDS-SD 16 values 
