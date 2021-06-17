@@ -15,9 +15,9 @@ if(!require("tidyverse")){install.packages("tidyverse"); library("tidyverse")}
 #to sample = 'itt' for intention to treat sample if you call Creating_data()
 create_data<-function(sample = 'completers'){ 
   PTSD_MDD_data <- as.data.frame(read.spss(file = "My_version.sav", use.value.labels = F)) 
-  if(sample = 'completers'){
+  if(sample == 'completers'){
   data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1 & PTSD_MDD_data$BEHVB == 0,]}
-  else if(sample = 'itt'){
+  else if(sample == 'itt'){
   data <- PTSD_MDD_data[PTSD_MDD_data$BEH =="1" & PTSD_MDD_data$TOEWO==1,]}
 
   
